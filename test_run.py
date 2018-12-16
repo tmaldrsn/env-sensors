@@ -7,10 +7,11 @@ if __name__ == "__main__":
 
 	start_time = time.time()
 
-	arduino = serial.Serial('/dev/ttyACM0', timeout=1, baudrate=9600)
+	arduino = serial.Serial('/dev/ttyACM1', timeout=None, baudrate=9600)
 	with open('data.txt', 'w+') as f:
 		while True:	
 			if arduino.readline().decode() != "":
+			#	print(arduino.readline())
 				data_time = time.time() - start_time	
 				f.write('\n')
 				
