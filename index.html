@@ -3,11 +3,29 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
+	<link rel='stylesheet' type='text/css' href='index.css'>
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <h1>Arduino Temperature and Humidity Sensors</h1>
     We are using node <script>document.write(process.versions.node)</script>,
     Chrome <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
+  
+	<h2>Data Files Available:</h2>
+	<ul id="files">	
+    <script>
+      const fs = require('fs');
+      const files = fs.readdirSync('./sample_data/');
+	  let fileElement = document.getElementById("files");
+
+      for (let i = 0; i < files.length; i++) {
+        let element = document.createElement('li');
+        let filename = document.createTextNode(files[i]);
+		
+		element.appendChild(filename);
+		fileElement.appendChild(element);
+	  }
+    </script>
+	</ul>
   </body>
 </html>

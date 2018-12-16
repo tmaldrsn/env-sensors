@@ -15,7 +15,7 @@ if __name__ == "__main__":
 	times = []
 	temps = []
 	humds = []	
-	for line in text.split('\n\n')[:-1]:
+	for line in text.split('\n')[:-1]:
 		times.append(float(line.split(" ")[0]))
 		temps.append(float(line.split(" ")[1]))
 		humds.append(float(line.split(" ")[2]))

@@ -1,5 +1,33 @@
-const { app, BrowserWindow } = require('electron');
+const { app, Menu, BrowserWindow } = require('electron');
 let win;
+
+const template = [
+	{
+		label: 'File',
+		submenu: [
+			{role: 'undo'},
+			{role: 'redo'}
+		]
+	},
+	{
+		label: 'Data',
+		submenu: [
+			{role: 'reload'},
+			{role: 'toggledevtools'}
+		]
+	},
+	{
+		role: 'window',
+		submenu: [
+			{role: 'minimize'},
+			{role: 'close'}
+		]
+	}
+];
+
+const menu = Menu.buildFromTemplate(template);
+Menu.setApplicationMenu(menu);
+
 
 function createWindow() {
 	// Create the browser window.
@@ -7,9 +35,6 @@ function createWindow() {
 
 	// and load the index.html of the app
 	win.loadFile('index.html');
-
-	// Open the DevTools.
-	win.webContents.openDevTools();
 
 	// Emitted when the window is close.
 	win.on('closed', () => {

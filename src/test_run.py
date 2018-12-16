@@ -17,7 +17,6 @@ if __name__ == "__main__":
 			#	print(arduino.readline())
 				data_time = datetime.datetime.today() - start_time
 				data_time_s = str(data_time.seconds) + "." + str(data_time.microseconds * 1000)
-				f.write('\n')
 				
 				print(data_time_s, str(arduino.readline().decode()))	
 				f.write(data_time_s + " " + str(arduino.readline().decode()))

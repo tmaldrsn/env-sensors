@@ -6,12 +6,21 @@ The goal of this project is to create a simple interface for displaying temperat
 
 The arduino code is written in C/C++ using the [Arduino IDE](https://www.arduino.cc/en/Main/Software), while the data processing aspect of the code is written mainly in Python using the [pyserial](https://pythonhosted.org/pyserial/) for serial output and [matplotlib](https://matplotlib.org/) for data visualization.
 
+# How to use
+
+Make sure [node](https://nodejs.org/en/download/) and npm are installed (I'm pretty sure npm comes with node.js installation). After cloning into the electron-dev branch, go to the root directory of the project and type one of the following commands.
+
+* "npm start" ==> opens the desktop application
+* "python3 test_run.py" ==> start collecting data from the arduino
+* "python3 format_text.py" ==> format the most recent data
+
+
+
 # TODO
 
-* More precise measurements (out to 2 decimal places)
 * Server for hosting data
 * Live data processing
-* Simple web app (electron.js)?
+* Clickable links that pop up data.txt files
 
 
 
