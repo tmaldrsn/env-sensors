@@ -1,4 +1,5 @@
-
+from matplotlib import pyplot as plt
+import numpy as np
 
 if __name__ == "__main__":
 	with open('data.txt', 'r+') as f:
@@ -31,3 +32,19 @@ if __name__ == "__main__":
 		humds.append(float(humd.split()[-1]))
 
 	print(temps, humds)
+
+	plt.figure(1)
+
+	plt.subplot(211)
+	plt.title("Arduino Temperature & Humidity Readings")
+	plt.xlabel("Time")
+	plt.ylabel("Temperature (\u00b0C)")	
+	plt.plot(temps)
+
+	plt.subplot(212)
+	plt.xlabel("Time")
+	plt.ylabel("Humidity (%)")
+	plt.plot(humds)
+
+	plt.tight_layout()
+	plt.show()
