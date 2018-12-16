@@ -8,7 +8,10 @@ The arduino code is written in C/C++ using the [Arduino IDE](https://www.arduino
 
 # TODO
 
-* Add timestamps to data
-* Clean up code base
-* Concurrent data readings
+* More precise measurements (out to 2 decimal places)
+* Server for hosting data
+* Live data processing
+* Simple web app (electron.js)?
+
+
 

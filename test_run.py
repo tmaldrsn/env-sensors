@@ -7,7 +7,10 @@ if __name__ == "__main__":
 
 	start_time = time.time()
 
-	arduino = serial.Serial('/dev/ttyACM1', timeout=None, baudrate=9600)
+	port = '/dev/ttyACM0'
+	#port = '/dev/ttyACM1'
+
+	arduino = serial.Serial(port, timeout=None, baudrate=9600)
 	with open('data.txt', 'w+') as f:
 		while True:	
 			if arduino.readline().decode() != "":
