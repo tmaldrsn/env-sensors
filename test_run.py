@@ -11,7 +11,7 @@ if __name__ == "__main__":
 	with open('data.txt', 'w+') as f:
 		while True:	
 			if arduino.readline().decode() != "":
-				data_time = time.time() - start_time()	
+				data_time = time.time() - start_time	
 				f.write('\n')
 				
 				print(data_time, str(arduino.readline().decode()))	
