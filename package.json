@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/tmaldrsn/env-sensors/issues"
   },
-  "homepage": "https://github.com/tmaldrsn/env-sensors#readme"
+  "homepage": "https://github.com/tmaldrsn/env-sensors#readme",
+  "devDependencies": {
+    "electron": "^3.0.12"
+  }
 }

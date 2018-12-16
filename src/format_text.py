@@ -1,8 +1,15 @@
+import os
+import glob
 from matplotlib import pyplot as plt
-import numpy as np
 
 if __name__ == "__main__":
-	with open('data.txt', 'r+') as f:
+	data_folder = glob.glob('../sample_data/*.txt')
+	if not data_folder:
+		raise Exception('There is no data present in the folder')
+
+	most_recent = max(data_folder, key=os.path.getctime)
+	print(most_recent)	
+	with open(most_recent, 'r+') as f:
 		text = f.read()
 
 	times = []
