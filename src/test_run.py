@@ -14,7 +14,7 @@ if __name__ == "__main__":
 	filename = start_time.strftime("%Y%m%dT%H%M%S") + ".txt"
 	with open(filename, 'w+') as f:
 		while True:	
-			if arduino.readline().decode() != "":
+			if arduino.readline() != "":
 			#	print(arduino.readline())
 				data_time = datetime.datetime.today() - start_time
 				data_time_s = str(data_time.seconds)[:7] + "." + str(data_time.microseconds * 1000)
