@@ -10,20 +10,47 @@
     We are using node <script>document.write(process.versions.node)</script>,
     Chrome <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
-  
+
+	<!-- 
+	TODO: Check for current connections and return data if available
+	--> 
+	<h2>Current Data:</h2>
+	<p><b>No Data Available</b></p>
+ 
+
 	<h2>Data Files Available:</h2>
 	<ul id="files">	
     <script>
-      const fs = require('fs');
-      const files = fs.readdirSync('./sample_data/');
+	  const fs = require('fs');
+      const electron = require('electron');
+	  const BrowserWindow = electron.remote.BrowserWindow;
+	  const files = fs.readdirSync('./sample_data/');
 	  let fileElement = document.getElementById("files");
 
       for (let i = 0; i < files.length; i++) {
-        let element = document.createElement('li');
-        let filename = document.createTextNode(files[i]);
+        let filename = files[i];
+		let d = filename.slice(4, 6) + "/" + filename.slice(6, 8) + "/" + filename.slice(0, 4);
+		let t = filename.slice(9, 11) + ":" + filename.slice(11, 13) + ":" + filename.slice(13, 15);
+		//document.write('<li><a>' + d + " " + t + '</a></li>');
+		let listElement = document.createElement('li');
+		let linkElement = document.createElement('a');
+		linkElement.onclick = function() {openFile('sample_data/' + filename)};
+		linkElement.style.textDecoration = "underline";		
+		linkElement.style.cursor = "pointer";
 		
-		element.appendChild(filename);
-		fileElement.appendChild(element);
+		let nameNode = document.createTextNode(d + " " + t);
+		linkElement.appendChild(nameNode);
+		listElement.appendChild(linkElement);
+		fileElement.appendChild(listElement);
+	  }
+
+
+	  function openFile(file) {
+	  	let win = new BrowserWindow({ width: 300, height: 400 });
+		win.loadFile(file);
+		win.on('closed', () => {
+		  win = null;
+		});
 	  }
     </script>
 	</ul>
