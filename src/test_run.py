@@ -6,8 +6,9 @@ import serial
 if __name__ == "__main__": 
 	start_time = datetime.datetime.today()
 
-	port = '/dev/ttyACM0'
+	#port = '/dev/ttyACM0'
 	#port = '/dev/ttyACM1'
+	port = 'COM3'
 
 	arduino = serial.Serial(port, timeout=None, baudrate=9600)
 	filename = start_time.strftime("%Y%m%dT%H%M%S") + ".txt"
