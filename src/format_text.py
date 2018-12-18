@@ -3,7 +3,11 @@ import glob
 from matplotlib import pyplot as plt
 
 if __name__ == "__main__":
-	data_folder = glob.glob('../sample_data/*.txt')
+	if os.path.basename(os.getcwd()) == 'env-sensors':
+		data_folder = glob.glob('sample_data/*.txt')
+	elif os.path.basename(os.getcwd()) == 'src':
+		data_folder = glob.glob('../sample_data/*.txt')
+
 	if not data_folder:
 		raise Exception('There is no data present in the folder')
 
@@ -36,4 +40,11 @@ if __name__ == "__main__":
 	plt.plot(times, humds)
 
 	plt.tight_layout()
+	
+	if os.path.basename(os.getcwd()) == 'env-sensors':
+		plt.savefig(most_recent[:-4] + ".png")
+	elif os.path.basename(os.getcwd()) == 'src':
+		plt.savefig('../' + most_recent[:-4] + ".png")
+	else:
+		pass
 	plt.show()
