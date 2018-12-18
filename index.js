@@ -47,7 +47,8 @@ const template = [
 	{
 		label: "Data",
 		submenu: [
-			
+			{ label: 'Start Data Collection' },
+			{ label: 'End Data Collection' },
 		]
 	},
 	{

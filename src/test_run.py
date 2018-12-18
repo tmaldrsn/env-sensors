@@ -11,7 +11,7 @@ if __name__ == "__main__":
 	port = 'COM3'
 
 	arduino = serial.Serial(port, timeout=None, baudrate=9600)
-	filename = start_time.strftime("%Y%m%dT%H%M%S") + ".txt"
+	filename = '../sample_data/' + start_time.strftime("%Y%m%dT%H%M%S") + ".txt"
 	with open(filename, 'w+') as f:
 		while True:	
 			if arduino.readline() != "":
@@ -19,5 +19,5 @@ if __name__ == "__main__":
 				data_time = datetime.datetime.today() - start_time
 				data_time_s = str(data_time.seconds)[:7] + "." + str(data_time.microseconds * 1000)
 				
-				print(data_time_s, str(arduino.readline().decode()))	
-				f.write(data_time_s + " " + str(arduino.readline().decode()))
+				print(data_time_s, str(arduino.readline())	
+				f.write(data_time_s + " " + str(arduino.readline()))
