@@ -1,6 +1,15 @@
 import os
 import datetime
+import warnings
 import serial
+import serial.tools.list_ports
+
+def get_arduino(serial_number):
+	for pinfo in serial.tools.list_ports.comports():
+		if pinfo.serial_number == serial_number: 
+			#print("Device connected to port: " + pinfo.device)
+			return serial.Serial(pinfo.device)
+	raise IOError("Could not find your Arduino, AVRDUDE")
 
 
 if __name__ == "__main__": 
@@ -8,7 +17,8 @@ if __name__ == "__main__":
 
 	#port = '/dev/ttyACM0'
 	#port = '/dev/ttyACM1'
-	port = 'COM3'
+	port = get_arduino(serial_number='55736303739351A0E022')
+	
 
 	arduino = serial.Serial(port, timeout=None, baudrate=9600)
 	filename = '../sample_data/' + start_time.strftime("%Y%m%dT%H%M%S") + ".txt"
