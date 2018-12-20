@@ -2,8 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
-	<link rel='stylesheet' type='text/css' href='index.css'>
+		<title>Hello World!</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel='stylesheet' type='text/css' href='index.css'>
   </head>
   <body>
     <h1>Arduino Temperature and Humidity Sensors</h1>
@@ -11,48 +12,69 @@
     Chrome <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
 
-	<!-- 
-	TODO: Check for current connections and return data if available
-	--> 
-	<h2>Current Data:</h2>
-	<p><b>No Data Available</b></p>
- 
+		<!-- 
+		TODO: Check for current connections and return data if available
+		--> 
+		<h2>Current Data:</h2>
+		<p><b>No Data Available</b></p>
+	
 
-	<h2>Data Files Available:</h2>
-	<ul id="files">	
+		<h2>Data Files Available:</h2>
+		<ul id="files">	
     <script>
-	  const fs = require('fs');
+		  const fs = require('fs');
       const electron = require('electron');
-	  const BrowserWindow = electron.remote.BrowserWindow;
-	  const files = fs.readdirSync('./sample_data/');
-	  let fileElement = document.getElementById("files");
+			const BrowserWindow = electron.remote.BrowserWindow;
+			const files = fs.readdirSync('./sample_data/');
+//			let fileElement = document.getElementById("files");
 
       for (let i = 0; i < files.length; i++) {
         let filename = files[i];
-		let d = filename.slice(4, 6) + "/" + filename.slice(6, 8) + "/" + filename.slice(0, 4);
-		let t = filename.slice(9, 11) + ":" + filename.slice(11, 13) + ":" + filename.slice(13, 15);
-		//document.write('<li><a>' + d + " " + t + '</a></li>');
-		let listElement = document.createElement('li');
-		let linkElement = document.createElement('a');
-		linkElement.onclick = function() {openFile('sample_data/' + filename)};
-		linkElement.style.textDecoration = "underline";		
-		linkElement.style.cursor = "pointer";
-		
-		let nameNode = document.createTextNode(d + " " + t);
-		linkElement.appendChild(nameNode);
-		listElement.appendChild(linkElement);
-		fileElement.appendChild(listElement);
-	  }
+				let d = [filename.slice(4, 6), filename.slice(6, 8), filename.slice(0, 4)].join('/');
+				let t = [filename.slice(9, 11), filename.slice(11, 13), filename.slice(13, 15)].join(':');
+				//document.write('<li><a>' + d + " " + t + '</a></li>');
+				
+				let listElement = document.createElement('li');
+
+				if (filename.slice(-4) == ".txt") {
+					let linkElement = document.createElement('a');
+					linkElement.onclick = function() {openFile('sample_data/' + filename)};
+					linkElement.style.textDecoration = "underline";		
+					linkElement.style.cursor = "pointer";
+					
+					let linkNameNode = document.createTextNode(d + " " + t + " - DATA");	
+					linkElement.appendChild(linkNameNode);
+					listElement.appendChild(linkElement);
+				}
+				else if (filename.slice(-4) == ".png") {	
+					let graphLinkElement = document.createElement('a');
+					graphLinkElement.onclick = function() {openFile('sample_data/' + filename)};
+					graphLinkElement.style.textDecoration = "underline";
+					graphLinkElement.style.cursor = "pointer";
+				
+					let graphNameNode = document.createTextNode(d + " " + t + " - GRAPH");
+					graphLinkElement.appendChild(graphNameNode);
+					listElement.appendChild(graphLinkElement);
+				}
+				
+				fileElement.appendChild(listElement);
+			}
 
 
 	  function openFile(file) {
-	  	let win = new BrowserWindow({ width: 300, height: 400 });
-		win.loadFile(file);
-		win.on('closed', () => {
-		  win = null;
-		});
+			let win;
+			if (file.slice(-4) == ".png") {
+				win = new BrowserWindow({ width: 640, height: 480});
+			} else if (file.slice(-4) == ".txt") {
+					win = new BrowserWindow({ width: 300, height: 400 });
+			}
+			
+			win.loadFile(file);
+			win.on('closed', () => {
+				win = null;
+			});
 	  }
     </script>
-	</ul>
+		</ul>
   </body>
 </html>
