@@ -1,0 +1,33 @@
+#files {
+	border: 2px solid black;
+
+}
+
+#files * :not(img) {
+	border: 1px solid grey;
+    text-align: left;
+}
+
+#files tr td img:hover{
+    cursor: pointer;
+}
+
+#dates {
+    width: 90px;
+}
+#times {
+    width: 90px;
+}
+#texts {
+    width: 40px;
+}
+#graphs {
+    width: 40px;
+}
+
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

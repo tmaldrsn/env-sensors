@@ -7,47 +7,89 @@ const files = fs.readdirSync(path.join(__dirname, 'sample_data/'));
 let fileElement = document.getElementById("files");
 
 for (let i = 0; i < files.length; i++) {
-    let filename = files[i];
-    let d = [filename.slice(4, 6), filename.slice(6, 8), filename.slice(0, 4)].join('/');
-    let t = [filename.slice(9, 11), filename.slice(11, 13), filename.slice(13, 15)].join(':');
-    //document.write('<li><a>' + d + " " + t + '</a></li>');
+    let rowElement = document.createElement("tr");
     
-    let listElement = document.createElement('li');
+    let dateText = [files[i].slice(4, 6), files[i].slice(6, 8), files[i].slice(0, 4)].join('/') 
+    let dateElement = document.createElement("td");
+    dateElement.innerText = dateText;
+    rowElement.appendChild(dateElement);
 
-    if (filename.slice(-4) == ".txt") {
-        let linkElement = document.createElement('a');
-        linkElement.onclick = function() {openFile('sample_data/' + filename)};
-        linkElement.style.textDecoration = "underline";		
-        linkElement.style.cursor = "pointer";
+    let timeText = [files[i].slice(9, 11), files[i].slice(11, 13), files[i].slice(13, 15)].join(':');
+    let timeElement = document.createElement("td");
+    timeElement.innerText = timeText;
+    rowElement.appendChild(timeElement);
+
+    if (files[i].slice(-4) == ".png" && files[i+1].slice(-4) == ".txt") {
+        let textFile = files[i+1];
+        let textFileElement = document.createElement('td');
+        textFileElement.class = "fileLink";
+        let textLink = document.createElement('img');
+        textLink.src = 'assets/img/txt_file_icon.png';
+        textLink.height = '32';
+        textLink.width = '32';
+        textLink.onclick = (() => {openFile(textFile)});
+    
+        textFileElement.appendChild(textLink);
+        rowElement.appendChild(textFileElement);
+
+        let graphFile = files[i];
+        let graphFileElement = document.createElement('td');
+        graphFileElement.class = "fileLink";
+        let graphLink = document.createElement('img');
+        graphLink.src = 'assets/img/png_file_icon.png';
+        graphLink.height = '32';
+        graphLink.width = '32';
+        graphLink.onclick = (() => {openFile(graphFile)});
         
-        let linkNameNode = document.createTextNode(d + " " + t + " - RAW");	
-        linkElement.appendChild(linkNameNode);
-        listElement.appendChild(linkElement);
-    }
-    else if (filename.slice(-4) == ".png") {	
-        let graphLinkElement = document.createElement('a');
-        graphLinkElement.onclick = function() {openFile('sample_data/' + filename)};
-        graphLinkElement.style.textDecoration = "underline";
-        graphLinkElement.style.cursor = "pointer";
-    
-        let graphNameNode = document.createTextNode(d + " " + t + " - GRAPH");
-        graphLinkElement.appendChild(graphNameNode);
-        listElement.appendChild(graphLinkElement);
-    }
-    
-    fileElement.appendChild(listElement);
-}
+        graphFileElement.appendChild(graphLink);
+        rowElement.appendChild(graphFileElement);
+        fileElement.appendChild(rowElement);
 
+    } else if (files[i].slice(-4) == ".txt" && files[i-1].slice(-4) != ".png") {
+        let textFile = files[i];
+        let textFileElement = document.createElement('td');
+        textFileElement.class = "fileLink";
+        let textLink = document.createElement('img');
+        textLink.src = 'assets/img/txt_file_icon.png';
+        textLink.height = '32';
+        textLink.width = '32';
+        textLink.onclick = (() => {openFile(textFile)});
+    
+        textFileElement.appendChild(textLink);
+        rowElement.appendChild(textFileElement);
+        fileElement.appendChild(rowElement);
+
+    } else if (files[i].slice(-4) == ".png") {
+        let emptyCol = document.createElement('td');
+
+        let graphFile = files[i];
+        let graphFileElement = document.createElement('td');
+        graphFileElement.class = "fileLink";
+        let graphLink = document.createElement('img');
+        graphLink.src = 'assets/img/png_file_icon.png';
+        graphLink.height = '32';
+        graphLink.width = '32';
+        graphLink.class = "fileLink";
+        graphLink.onclick = (() => {openFile(graphFile)});
+        
+        graphFileElement.appendChild(graphLink);
+        rowElement.appendChild(emptyCol);
+        rowElement.appendChild(graphFileElement);
+        fileElement.appendChild(rowElement);
+    }
+
+}
 
 function openFile(file) {
     let win;
     if (file.slice(-4) == ".png") {
-        win = new BrowserWindow({ width: 640, height: 480});
+        win = new BrowserWindow({width: 640, height: 480});
     } else if (file.slice(-4) == ".txt") {
-        win = new BrowserWindow({ width: 300, height: 400 });
+        win = new BrowserWindow({width: 300, height: 400 });
     }
-      
-    win.loadFile(file);
+
+    win.loadFile(path.join('./sample_data/' + file));
+    
     win.on('closed', () => {
         win = null;
     });
