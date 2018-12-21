@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+		<title>Hello World!</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel='stylesheet' type='text/css' href='assets/css/index.css'>
+  </head>
+  <body>
+    <h1>Arduino Temperature and Humidity Sensors</h1>
+    We are using node <script>document.write(process.versions.node)</script>,
+    Chrome <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+
+		<!-- 
+		TODO: Check for current connections and return data if available
+		--> 
+		<div id="currentData">
+			<h2>Current Data:</h2>
+			<p><b>No Data Available</b></p>
+		</div>
+		
+		<h2>Data Files Available:</h2>
+		<ul id="files">	
+		</ul>
+
+		<script src="assets/js/filelist.js"></script>
+
+	</body>
+</html>

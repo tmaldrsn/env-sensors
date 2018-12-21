@@ -1,0 +1,23 @@
+{
+  "name": "env-sensors",
+  "version": "1.0.0",
+  "description": "measure temperature and humidity with arduino",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmaldrsn/env-sensors.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tmaldrsn/env-sensors/issues"
+  },
+  "homepage": "https://github.com/tmaldrsn/env-sensors#readme",
+  "devDependencies": {
+    "electron": "^3.0.12"
+  }
+}
