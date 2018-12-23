@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-		<title>Hello World!</title>
+		<title>Environment Sensors Project</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<link rel='stylesheet' type='text/css' href='assets/css/index.css'>
   </head>
@@ -17,7 +17,16 @@
 		--> 
 		<div id="currentData">
 			<h2>Current Data:</h2>
-			<p><b>No Data Available</b></p>
+			<div>
+				<div id="noConnection">
+					<p><b>No Connections Available</b></p>
+				</div>
+				<div id="connection" hidden>
+					<h3>Connection: <span class="conn"></span></h3>
+					<h3>Current Temperature: <span class="temp"></span><span class="tempUnit"></span></h3>
+					<h3>Current Humidity: <span class="humd"></span>%</h3>
+				</div>
+			</div>
 		</div>
 		
 		<h2>Data Files Available:</h2>

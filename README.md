@@ -27,10 +27,11 @@ Make sure [node](https://nodejs.org/en/download/) and npm are installed (I'm pre
 
 # TODO
 
+* Show connections in electron window
+* Show live data pulled from arduino
+* Convert units from *C to *F
 * Create custom menu in electron window
 * Update functionality of menu options
-* Server for hosting data
-* Live data processing
 * Update supplies section of README
 
 

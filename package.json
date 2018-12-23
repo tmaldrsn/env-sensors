@@ -4,7 +4,6 @@
   "description": "measure temperature and humidity with arduino",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron ."
   },
   "repository": {
@@ -19,5 +18,6 @@
   "homepage": "https://github.com/tmaldrsn/env-sensors#readme",
   "devDependencies": {
     "electron": "^3.0.12"
-  }
+  },
+  "dependencies": {}
 }

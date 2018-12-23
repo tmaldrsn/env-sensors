@@ -1,6 +1,5 @@
 #files {
-	border: 2px solid black;
-
+    border: 2px solid black;
 }
 
 #files * :not(img) {
@@ -8,26 +7,29 @@
     text-align: left;
 }
 
-#files tr td img:hover{
-    cursor: pointer;
+#files tr th {
+    text-align: center;
 }
 
 #dates {
     width: 90px;
 }
+
 #times {
     width: 90px;
 }
+
 #texts {
-    width: 40px;
-}
-#graphs {
-    width: 40px;
+    width: 50px;
 }
 
+#graphs {
+    width: 50px;
+}
 
 img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    cursor: pointer;
 }
